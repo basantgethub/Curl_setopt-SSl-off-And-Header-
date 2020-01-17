@@ -1,0 +1,36 @@
+<?php
+
+		error_reporting(E_ALL);
+     ini_set('display_errors', 1);
+//$url = "https://103.209.147.133/users/v1.0/register?name=Anuj&email=anuj@gmail.com@gmail.com&phone=7896587478&type=Buyer";
+$url = "https://103.209.147.133/users/v1.0/register?name=Basant%20Kumar&email=basant@bigwigmedia.in&phone=8882780014&type=Supplier";
+				 
+	$ch = curl_init(); 
+	curl_setopt($ch, CURLOPT_URL, $url);    
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");  
+	curl_setopt($ch, CURLOPT_POST, true);                                                                
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(   
+		'Accept: application/json',
+		'Content-Type: application/json',
+		'token: Vb4I7kR5DoQ+wIG9OzqWUijyG1mJrB8Yiuh+jOw3zEo=',
+		'imei: 359208071547000',
+		)                                                           
+	);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0');     
+	$authToken = curl_exec($ch);        
+	$err     = curl_errno( $ch );
+    $errmsg  = curl_error( $ch );
+    $header  = curl_getinfo( $ch );
+	curl_close( $ch );
+	print_r($authToken);
+    $header['errno']   = $err;
+    $header['errmsg']  = $errmsg;
+   print_r($header);  
+
+			
+?>
